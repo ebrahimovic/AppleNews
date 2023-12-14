@@ -59,40 +59,40 @@ function HomePage(props) {
     setCurrentPage(initialPage); 
   };
 
-  useEffect(() => {
-    const getNewsData = async () => {
-      try {
-        const updatedURL = `https://newsapi.org/v2/everything?q=apple&sortBy=${sortOption}&apiKey=${Key}&page=${currentPage}`;
-        
-        const response = await fetch(updatedURL);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setNewsData(data.articles);
-        totalArticles = data.articles.length;
-        totalPages = Math.ceil(totalArticles / cardsPerPage);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-    getNewsData();
-  }, [sortOption, currentPage]);
-
   // useEffect(() => {
   //   const getNewsData = async () => {
   //     try {
+  //       const updatedURL = `https://newsapi.org/v2/everything?q=apple&sortBy=${sortOption}&apiKey=${Key}&page=${currentPage}`;
         
-  //       setNewsData(jsonData.articles);
-  //       totalArticles = jsonData.articles.length;
+  //       const response = await fetch(updatedURL);
+  //       if (!response.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+  //       const data = await response.json();
+  //       setNewsData(data.articles);
+  //       totalArticles = data.articles.length;
   //       totalPages = Math.ceil(totalArticles / cardsPerPage);
   //     } catch (error) {
   //       setError(error.message);
   //     }
   //   };
-
   //   getNewsData();
-  // }, []);
+  // }, [sortOption, currentPage]);
+
+  useEffect(() => {
+    const getNewsData = async () => {
+      try {
+        
+        setNewsData(jsonData.articles);
+        totalArticles = jsonData.articles.length;
+        totalPages = Math.ceil(totalArticles / cardsPerPage);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    getNewsData();
+  }, []);
 
 
   const updateURL = () => {
